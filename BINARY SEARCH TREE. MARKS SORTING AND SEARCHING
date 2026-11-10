@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct BST{
+    int marks;
+    struct BST *left, *right;
+} BST;
+
+BST* newNode(int marks){
+    BST* n = (BST*)malloc(sizeof(BST));
+    n->marks=marks; n->left=n->right=NULL;
+    return n;
+}
+
+BST* insert(BST* root, int marks){
+    if(root==NULL) return newNode(marks);
+    if(marks < root->marks) root->left = insert(root->left, marks);
+    else root->right = insert(root->right, marks);
+    return root;
+}
+
+void inorder(BST* root){ // gives sorted marks
+    if(root!=NULL){
+        inorder(root->left);
+        printf("%d ", root->marks);
+        inorder(root->right);
+    }
+}
+
+int search(BST* root, int key){
+    if(root==NULL) return 0;
+    if(root->marks==key) return 1;
+    if(key < root->marks) return search(root->left, key);
+    return search(root->right, key);
+}
+
+int main(){
+    BST* root=NULL;
+    root = insert(root, 65); insert(root, 40); insert(root, 78); insert(root, 90); insert(root, 30);
+    printf("Sorted marks: "); inorder(root); printf("\n");
+    printf("Search 78: %s\n", search(root,78)?"Found":"Not Found");
+    return 0;
+}
