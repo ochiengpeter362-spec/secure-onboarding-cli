@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+// 1. Define the Product structure (4 Marks)
+struct Product {
+    int productCode;
+    char productName[50];
+    float unitPrice;
+    int quantityInStock;
+};
+
+int main() {
+    // 2. Declare a structure variable and input product details (4 Marks)
+    struct Product prod;
+    float totalValue;
+
+    printf("Enter Product Code: ");
+    scanf("%d", &prod.productCode);
+
+    printf("Enter Product Name: ");
+    scanf(" %[^\n]", prod.productName);
+
+    printf("Enter Unit Price: ");
+    scanf("%f", &prod.unitPrice);
+
+    printf("Enter Quantity in Stock: ");
+    scanf("%d", &prod.quantityInStock);
+
+    // 3. Calculate total value of available stock (3 Marks)
+    totalValue = prod.unitPrice * prod.quantityInStock;
+
+    // 4. Display product details and total stock value (4 Marks)
+    printf("\n--- Product Details ---\n");
+    printf("Product Code: %d\n", prod.productCode);
+    printf("Product Name: %s\n", prod.productName);
+    printf("Unit Price: KSh %.2f\n", prod.unitPrice);
+    printf("Quantity in Stock: %d\n", prod.quantityInStock);
+    printf("Total Stock Value: KSh %.2f\n", totalValue);
+
+    return 0;
+}
